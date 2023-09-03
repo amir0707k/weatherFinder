@@ -49,7 +49,9 @@ async function fetchWeatherData(latitude,longitude){
         <span>Humidity : ${result.main.humidity}%</span>
         <span>Time Zone : GMT+5:30</span>
         <span>Pressure : ${(result.main.pressure * 0.000987).toFixed()}atm</span>
-        <span>Wind Direction : North-West</span>
+        <span>Wind Direction : ${getWindDirection(
+          result.wind.deg
+        )}</span>
         <span>Feels like : ${(
           result.main.feels_like - 273.15
         ).toFixed()}&deg;</span>
@@ -59,4 +61,28 @@ async function fetchWeatherData(latitude,longitude){
         console.log(error);
     }
     
+}
+
+function getWindDirection(degrees) {
+    const directions = [
+      "North",
+      "North-North-East",
+      "North-East",
+      "East-North-East",
+      "East",
+      "East-South-East",
+      "South-East",
+      "South-South-East",
+      "South",
+      "South-South-West",
+      "South-West",
+      "West-South-West",
+      "West",
+      "West-North-West",
+      "North-West",
+      "North-NorthWest",
+    ];
+
+    const index = Math.round(degrees / 22.5) % 16;
+    return directions[index];
 }
