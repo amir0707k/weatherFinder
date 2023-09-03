@@ -17,7 +17,7 @@ const success = (position) => {
     setTimeout(() => {
         window.location.href = "https://amir0707k.github.io/weatherFinder/weather-details.html"
         console.log( window.location.href + "weather-details.html");
-    },1000)
+    },500)
 }
 
 const error = (error) => {
